@@ -29,6 +29,6 @@ func (h User) GetAll() ([]User, error) {
 	if err != nil {
 		return nil, err
 	}
-	log.Printf("Users %s", result)
+	log.Printf("Users %v", result)
 	return result, nil
 }

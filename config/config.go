@@ -1,9 +1,9 @@
 package config
 
 import (
+	"github.com/spf13/viper"
 	"log"
 	"path/filepath"
-	"github.com/spf13/viper"
 )
 
 var config *viper.Viper

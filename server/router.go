@@ -2,7 +2,6 @@ package server
 
 import (
 	"../controllers"
-	"../middlewares"
 	"github.com/gin-gonic/gin"
 )
 
@@ -11,7 +10,7 @@ func NewRouter() *gin.Engine {
 
 	router.Use(gin.Logger())
 	router.Use(gin.Recovery())
-	router.Use(middlewares.AuthMiddleware())
+	//router.Use(middlewares.AuthMiddleware())
 
 	v1 := router.Group("api/v1")
 	{
