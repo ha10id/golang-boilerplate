@@ -1,15 +1,15 @@
 package models
 
 import (
-	"log"
-
 	"../db"
+	"gopkg.in/mgo.v2/bson"
+	"log"
 )
 
 //
 type User struct {
-	_id        string
-	username   string
+	ID         bson.ObjectId `json:"_id" bson:"_id,omitempty"`
+	UserName   string        `json:"username" bson:"username"`
 	firstName  string
 	middleName string
 	lastName   string
