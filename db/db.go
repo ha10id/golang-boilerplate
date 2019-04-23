@@ -1,28 +1,50 @@
 package db
 
 import (
-	"gopkg.in/mgo.v2"
+	"context"
+	"fmt"
+	"log"
+
+	"go.mongodb.org/mongo-driver/mongo"
+	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-var (
-	mgoSession *mgo.Session
-)
+// Users ref collection
+var Users *mongo.Collection
 
-//
-func Init() *mgo.Database {
-	var err error
+// Documents ref collection
+var Documents *mongo.Collection
 
-	mgoSession, err = mgo.Dial("mongodb://10.127.130.213:27017")
+// Categories ref collection
+var Departments *mongo.Collection
+
+// Goverments ref collection
+var Goverments *mongo.Collection
+
+// DBInit Database
+func DBInit() *mongo.Client {
+	// Set client options
+	clientOptions := options.Client().ApplyURI("mongodb://10.127.130.213:27017")
+	dbName := "citsk"
+	// Connect to MongoDB
+	client, err := mongo.Connect(context.TODO(), clientOptions)
 
 	if err != nil {
-		panic(err)
+		log.Fatal(err)
 	}
 
-	return mgoSession.DB("appeals")
+	// Check the connection
+	err = client.Ping(context.TODO(), nil)
 
-}
+	if err != nil {
+		log.Fatal(err)
+	}
+	// export collections
+	Users = client.Database(dbName).Collection("users")
+	Documents = client.Database(dbName).Collection("documents")
+	Departments = client.Database(dbName).Collection("departments")
+	Goverments = client.Database(dbName).Collection("goverments")
 
-//
-func CloseSession() {
-	mgoSession.Close()
+	fmt.Println("Connected to MongoDB!")
+	return client
 }

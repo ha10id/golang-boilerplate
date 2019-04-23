@@ -3,12 +3,19 @@ package main
 import (
 	"flag"
 	"fmt"
+	"log"
 	"os"
-
+	"./db"
 	"./server"
 
 	"./config"
 )
+
+func init() {
+	log.Println("WELCOME!")
+	db.DBInit()
+
+}
 
 func main() {
 	enviroment := flag.String("e", "development", "")
