@@ -1,11 +1,12 @@
 package models
 
 import (
-	"../db"
 	"context"
+	"log"
+
+	"../db"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
-	"log"
 )
 
 //
@@ -51,4 +52,19 @@ func (h User) GetAll() ([]*User, error) {
 		return nil, err
 	}
 	return results, nil
+}
+
+// Get user by ID
+func (h User) Get(id string) (*User, error) {
+	// filter := bson.D{primitive.E{Key: "_id", Value: id}}
+	idB, err := primitive.ObjectIDFromHex(id)
+	if err != nil {
+		return nil, err
+	}
+	var result User
+	err = db.Users.FindOne(context.TODO(), bson.M{"_id": idB}).Decode(&result)
+	if err != nil {
+		return nil, err
+	}
+	return &result, nil
 }

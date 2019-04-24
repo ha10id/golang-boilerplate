@@ -12,6 +12,9 @@ import (
 // Users ref collection
 var Users *mongo.Collection
 
+// Employees ref collection
+var Employees *mongo.Collection
+
 // Documents ref collection
 var Documents *mongo.Collection
 
@@ -41,6 +44,7 @@ func DBInit() *mongo.Client {
 	}
 	// export collections
 	Users = client.Database(dbName).Collection("users")
+	Employees = client.Database(dbName).Collection("employees")
 	Documents = client.Database(dbName).Collection("documents")
 	Departments = client.Database(dbName).Collection("departments")
 	Goverments = client.Database(dbName).Collection("goverments")

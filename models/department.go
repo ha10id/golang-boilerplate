@@ -1,16 +1,18 @@
 package models
 
 import (
-	"../db"
 	"context"
+	"log"
+
+	"../db"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
-	"log"
 )
 
 type Department struct {
-	ID   primitive.ObjectID `json:"_id" bson:"_id,omitempty"`
-	Name string             `json:"name" bson:"name"`
+	ID       primitive.ObjectID `json:"_id" bson:"_id,omitempty"`
+	Title    string             `json:"title" bson:"title"`
+	SubTitle string             `json:"subtitle" bson:"subtitle"`
 }
 
 // GetAll user
