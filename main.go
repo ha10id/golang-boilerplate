@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+
 	"./db"
 	"./server"
 
@@ -13,7 +14,6 @@ import (
 
 func init() {
 	log.Println("WELCOME!")
-	db.DBInit()
 
 }
 
@@ -25,5 +25,6 @@ func main() {
 	}
 	flag.Parse()
 	config.Init(*enviroment)
+	db.Init()
 	server.Init()
 }

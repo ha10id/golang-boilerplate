@@ -1,20 +1,18 @@
 package controllers
 
 import (
-	"log"
-
 	"../models"
 	"github.com/gin-gonic/gin"
 )
 
-type EmployeeController struct{}
+type PieceController struct{}
 
-var employeeModel = new(models.Employee)
+var pieceModel = new(models.Piece)
 
-func (u EmployeeController) GetAll(c *gin.Context) {
-	depart := c.Query("department")
-	log.Println("DEPART:", depart)
-	employees, err := employeeModel.GetAll()
+func (u PieceController) GetAll(c *gin.Context) {
+	// depart := c.Query("department")
+	// log.Println("DEPART:", depart)
+	news, err := pieceModel.GetAll()
 
 	if err != nil {
 		c.JSON(500, gin.H{"message": "Error to retrieve user", "error": err})
@@ -22,10 +20,11 @@ func (u EmployeeController) GetAll(c *gin.Context) {
 		return
 	}
 
-	c.JSON(200, gin.H{"data": employees})
+	c.JSON(200, gin.H{"data": news})
 	return
 }
 
+/*
 func (u EmployeeController) GetByDepartment(c *gin.Context) {
 	departId := c.Param("ID")
 	log.Println(departId)
@@ -40,3 +39,4 @@ func (u EmployeeController) GetByDepartment(c *gin.Context) {
 	c.JSON(200, gin.H{"data": employee})
 	return
 }
+*/
