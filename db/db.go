@@ -14,6 +14,9 @@ import (
 // Users ref collection
 var Users *mongo.Collection
 
+// Assets ref collection
+var Assets *mongo.Collection
+
 // Employees ref collection
 var Employees *mongo.Collection
 
@@ -49,6 +52,7 @@ func Init() *mongo.Client {
 	}
 	// export collections
 	Users = client.Database(dbName).Collection("users")
+	Assets = client.Database(dbName).Collection("assets")
 	Employees = client.Database(dbName).Collection("employees")
 	Documents = client.Database(dbName).Collection("documents")
 	Departments = client.Database(dbName).Collection("departments")

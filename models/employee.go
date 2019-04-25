@@ -48,6 +48,22 @@ func (h Employee) GetAll() ([]*Employee, error) {
 	return results, nil
 }
 
+// Get user by ID
+func (h Employee) Get(id string) (*Employee, error) {
+	// filter := bson.D{primitive.E{Key: "_id", Value: id}}
+	idB, err := primitive.ObjectIDFromHex(id)
+	if err != nil {
+		return nil, err
+	}
+	var result Employee
+	err = db.Employees.FindOne(context.TODO(), bson.M{"_id": idB}).Decode(&result)
+	if err != nil {
+		return nil, err
+	}
+	return &result, nil
+}
+
+// Get employees by department
 func (h Employee) GetByDepartment(depId string) ([]*Employee, error) {
 	var results []*Employee
 	depID, _ := primitive.ObjectIDFromHex(depId)

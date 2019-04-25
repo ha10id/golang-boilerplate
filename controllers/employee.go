@@ -40,3 +40,18 @@ func (u EmployeeController) GetByDepartment(c *gin.Context) {
 	c.JSON(200, gin.H{"data": employee})
 	return
 }
+
+func (u EmployeeController) GetById(c *gin.Context) {
+	Id := c.Param("ID")
+	log.Println(Id)
+	employee, err := employeeModel.Get(Id)
+
+	if err != nil {
+		c.JSON(500, gin.H{"message": "Error to retrieve user", "error": err})
+		c.Abort()
+		return
+	}
+
+	c.JSON(200, gin.H{"data": employee})
+	return
+}
