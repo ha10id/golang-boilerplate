@@ -42,11 +42,13 @@ func NewRouter() *gin.Engine {
 	{
 		userController := new(controllers.UserController)
 		pieceController := new(controllers.PieceController)
-
+		assetsController := new(controllers.AssetsController)
 		departmentController := new(controllers.DepartmentController)
 		employeeController := new(controllers.EmployeeController)
 
 		v1.GET("/users", userController.GetAll)
+		v1.GET("/banners", assetsController.GetMainBanners)
+		v1.GET("/actions", assetsController.GetMainActions)
 		v1.GET("/departments", departmentController.GetAll)
 		v1.GET("/news", pieceController.GetAll)
 		v1.GET("/employees", employeeController.GetAll)

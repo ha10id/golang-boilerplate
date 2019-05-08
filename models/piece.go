@@ -46,3 +46,4 @@ func (h Piece) GetAll() ([]*Piece, error) {
 	}
 	return results, nil
 }
+

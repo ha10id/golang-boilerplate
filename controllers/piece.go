@@ -25,7 +25,7 @@ func (u PieceController) GetAll(c *gin.Context) {
 }
 
 /*
-func (u EmployeeController) GetByDepartment(c *gin.Context) {
+func (u EmployeeController) GetById(c *gin.Context) {
 	departId := c.Param("ID")
 	log.Println(departId)
 	employee, err := employeeModel.GetByDepartment(departId)
